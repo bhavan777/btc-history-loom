@@ -16,10 +16,12 @@ class App extends Component {
     fetch("https://api.coinmarketcap.com/v2/ticker/1/")
     .then(data => data.json())
     .then(data => {
-      let endTrans = this.state.transactions[0];
+      let endTrans = this.state.transactions[this.state.transactions.length-1];
       if( endTrans && data.metadata.timestamp !== endTrans.metadata.timestamp) {
         let lastData = this.state.transactions[this.state.transactions.length -1];
         let newData = {...data, isIncreasing: lastData.data.quotes.USD.price < data.data.quotes.USD.price, _id: (new Date()).getTime() }
+        let latestPrice = newData.data.quotes.USD.price.toFixed(4);
+        document.title = latestPrice + " BTC History -Bitcoin";
         this.setState({
           lastPolled,
           transactions: [newData, ...this.state.transactions]
@@ -32,15 +34,21 @@ class App extends Component {
     this.poller = setInterval(this.poll, 2200);
   }
 
+  componentWillUnmount() {
+    clearInterval(this.poller);
+  }
+
   componentWillMount() {
     fetch("https://api.coinmarketcap.com/v2/ticker/1/?start=1&limit=10")
     .then(data => data.json())
     .then(data => {
       data.data.quotes.USD.price.toFixed(3);
       let newData = {...data, isIncreasing: true, _id: (new Date()).getTime() }
+      let latestPrice = newData.data.quotes.USD.price.toFixed(4);
       this.setState({
-        transactions: [...this.state.transactions, newData]
+        transactions: [newData, ...this.state.transactions]
       });
+      document.title = latestPrice + " BTC History -Bitcoin";
     })
   }
 

@@ -94,7 +94,6 @@ html{
   height: calc(100vh - 150px);
   overflow: hidden;
   overflow-y: scroll;
-  flex-wrap: wrap;
 }
 
 .transactions-wrap {
