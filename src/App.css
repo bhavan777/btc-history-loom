@@ -42,10 +42,10 @@
 }
 @keyframes loader-spin {
   from {
-    transform: rotate("0deg");
+    transform: rotate(0deg);
   }
   to {
-    transform: rotate("360deg");
+    transform: rotate(360deg);
   }
 }
 
@@ -94,6 +94,8 @@ html{
   height: calc(100vh - 150px);
   overflow: hidden;
   overflow-y: scroll;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .transactions-wrap {
@@ -128,7 +130,13 @@ html{
 }
 
 .loader {
-  animation: loader-spin infinite 0.2s linear;
+  animation: loader-spin infinite 0.5s linear;
+  width: 15px;
+  margin: 50px 0 0;
+  height: 15px;
+  border: 2px solid #666;
+  border-bottom-color: white;
+  border-radius: 50%;
 }
 
 .tradesize{
