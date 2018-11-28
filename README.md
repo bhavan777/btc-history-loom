@@ -5,7 +5,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 1. checked the metadata timestamp to see if the data is new
 2. api poll is recommended to be under 30 per min, so, polling every 2.2 seconds to   keep the calls under 30 .
 3. dint use pure components on purpose. but, updated state only if new data is available in the api call response of the poll. so, lesser the number of state updates, lesser re renders.
-
+4. the history row is just a stateless component rendering what ever has been passed to it.
+5. not sure of the definitions of some terms in forex, so assumed trade size to be ratio of volum_24h to total market cap; and time to the time the app receive response.
 ## Available Scripts
 
 In the project directory, you can run:
